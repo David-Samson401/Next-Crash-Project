@@ -2,7 +2,11 @@ import EventCard from "./components/EventCard";
 import ExploreBtn from "./components/ExploreBtn";
 import { events } from "@/lib/constants";
 
-const page = () => {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const page = async () => {
+    const response = await fetch(`${BASE_URL}/api/events`)
+    const { events } = await response.json();
+
   return (
     <section>
       <h1 className="text-center">
