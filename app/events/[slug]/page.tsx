@@ -1,15 +1,10 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import BookEvent from "@/components/BookEvent";
-import { getSimilarEventsBySlug } from "@/lib/actions/event.actions";
+import { getSimilarEventsBySlug, getEventBySlug } from "@/lib/actions/event.actions";
 import { IEvent } from "@/database";
 import EventCard from "@/app/components/EventCard";
-
-
-
-
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { Suspense } from "react";
 
 const EventDetailItem = ({
   icon,
@@ -51,26 +46,12 @@ const EventTags = ({ tags }: { tags: string[] }) => (
   </div>
 );
 
-const EventDetailsPage = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) => {
-  const { slug } = await params;
-  const base = BASE_URL ?? "";
+const EventDetailsContent = async ({ slug }: { slug: string }) => {
+  const event = await getEventBySlug(slug);
 
-  const request = await fetch("/api/events", {
-    cache: "no-store",
-  });
-
-  if (!request.ok) {
-    if (request.status === 404) return notFound();
-    throw new Error(`Failed to fetch event (status: ${request.status})`);
+  if (!event) {
+    return notFound();
   }
-
-  const data = await request.json();
-  const event =
-    data?.event ?? (Array.isArray(data?.events) ? data.events[0] : undefined);
 
   const {
     description,
@@ -176,6 +157,20 @@ const EventDetailsPage = async ({
         </div>
       </div>
     </section>
+  );
+};
+
+const EventDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
+
+  return (
+    <Suspense fallback={<section id="event"><p>Loading event...</p></section>}>
+      <EventDetailsContent slug={slug} />
+    </Suspense>
   );
 };
 
