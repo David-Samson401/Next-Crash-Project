@@ -259,11 +259,6 @@ const EventSchema = new Schema<IEventDocument, IEventModel>(
 );
 
 /**
- * UNIQUE INDEX
- */
-EventSchema.index({ slug: 1 }, { unique: true });
-
-/**
  * PRE-SAVE HOOK
  */
 EventSchema.pre("save", function (next) {
