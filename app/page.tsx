@@ -4,7 +4,7 @@ import ExploreBtn from "./components/ExploreBtn";
 import { events as staticEvents } from "@/lib/constants";
 
 
-export const dynamic = "force-dynamic";
+
 
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;

@@ -6,7 +6,7 @@ import { IEvent } from "@/database";
 import EventCard from "@/app/components/EventCard";
 
 
-export const dynamic = "force-dynamic";
+
 
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
