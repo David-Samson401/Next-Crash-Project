@@ -21,8 +21,11 @@ if (!MONGODB_URI) {
   process.exit(1);
 }
 
+// Type assertion after the check - we know MONGODB_URI is defined here
+const mongoUri: string = MONGODB_URI;
+
 async function connectForSeed(): Promise<typeof mongoose> {
-  return mongoose.connect(MONGODB_URI);
+  return mongoose.connect(mongoUri);
 }
 
 const seedEvents = [
