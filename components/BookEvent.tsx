@@ -55,7 +55,14 @@ const BookEvent = ({ eventId, slug }: BookEventProps) => {
   return (
     <div id="book-event">
       {submitted ? (
-        <p className="text-sm text-green-400">Thank you for signing up!</p>
+        <div className="text-center py-4">
+          <p className="text-lg text-green-400 font-semibold">
+            🎉 You're registered!
+          </p>
+          <p className="text-sm text-light-200 mt-2">
+            Check your email for event details and updates.
+          </p>
+        </div>
       ) : (
         <form onSubmit={handleSubmit}>
           <div>

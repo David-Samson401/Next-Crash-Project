@@ -15,8 +15,35 @@ const martianMono = Martian_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DevEvent",
-  description: "The Hub for Every Dev Event You Must'nt Miss",
+  title: {
+    default: "DevEvents - Developer Conferences, Meetups & Hackathons",
+    template: "%s | DevEvents",
+  },
+  description:
+    "Discover and book the best developer events worldwide. From tech conferences and coding meetups to hackathons and workshops - find your next event on DevEvents.",
+  keywords: [
+    "developer events",
+    "tech conferences",
+    "coding meetups",
+    "hackathons",
+    "programming workshops",
+    "software development",
+  ],
+  authors: [{ name: "DevEvents" }],
+  openGraph: {
+    title: "DevEvents - Developer Conferences, Meetups & Hackathons",
+    description:
+      "Discover and book the best developer events worldwide. Conferences, meetups, hackathons, and workshops all in one place.",
+    type: "website",
+    locale: "en_US",
+    siteName: "DevEvents",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DevEvents - Developer Conferences, Meetups & Hackathons",
+    description:
+      "Discover and book the best developer events worldwide. Conferences, meetups, hackathons, and workshops all in one place.",
+  },
 };
 
 export default function RootLayout({

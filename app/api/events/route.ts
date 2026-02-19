@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     } catch {
       return NextResponse.json(
         { message: "Invalid form-data format" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     if (!file) {
       return NextResponse.json(
         { message: "Image file is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     if (!tagsString || !agendaString) {
       return NextResponse.json(
         { message: "tags and agenda fields are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
     } catch {
       return NextResponse.json(
         { message: "Invalid JSON in tags or agenda" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -80,11 +80,11 @@ export async function POST(req: NextRequest) {
     const uploadResult = await new Promise((resolve, reject) => {
       cloudinary.uploader
         .upload_stream(
-          { resource_type: "image", folder: "DevEvent" },
+          { resource_type: "image", folder: "DevEvents" },
           (error, result) => {
             if (error) return reject(error);
             resolve(result);
-          }
+          },
         )
         .end(buffer);
     });
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { message: "Event created successfully", event: createdEvent },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (e: any) {
     console.error("Server Error:", e);
@@ -128,7 +128,7 @@ export async function POST(req: NextRequest) {
         message: "Event Creation Failed",
         error: e?.message || "Unknown server error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -141,7 +141,7 @@ export async function GET() {
 
     return NextResponse.json(
       { message: "Events fetched successfully", events },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (e: any) {
     console.error("Server Error:", e);
@@ -150,7 +150,7 @@ export async function GET() {
         message: "Event fetching failed",
         error: e?.message || "Unknown server error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

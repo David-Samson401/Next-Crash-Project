@@ -53,10 +53,10 @@ const HomePage = () => {
   return (
     <section>
       <h1 className="text-center">
-        The Hub for Every Dev <br /> Event You can&apos;t Miss
+        Discover Developer Events <br /> You Can&apos;t Miss
       </h1>
       <p className="text-center mt-5">
-        Hackathons, Meetups, and Conferences, All in One place
+        Conferences, Meetups, Hackathons, and Workshops — All in One Place
       </p>
 
       <ExploreBtn />

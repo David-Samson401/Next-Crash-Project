@@ -6,7 +6,7 @@ describe("Homepage", () => {
   });
 
   it("should load the homepage successfully", () => {
-    cy.get("h1").should("contain", "The Hub for Every Dev");
+    cy.get("h1").should("contain", "Discover Developer Events");
   });
 
   it("should display the navbar with correct links", () => {
